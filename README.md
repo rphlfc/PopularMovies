@@ -8,6 +8,7 @@ Lista de filmes populares usando a API do The Movie Database com MVVM e SwiftUI.
 
 ## Vídeos
 - [Vídeo no Youtube](https://youtu.be/9STy4_0aD60)
+- [Vídeo no Youtube - Scroll Infinito](https://youtu.be/UevMxEK3-Gs)
 
 ## Requisitos
 - iOS 14
