@@ -12,6 +12,7 @@ struct ContentView: View {
     @StateObject var viewModel = MovieViewModel()
     
     var body: some View {
+        
         NavigationView {
             ZStack {
                 if viewModel.movies.count > 0 {
@@ -50,16 +51,24 @@ struct MovieView: View {
                 
                 Spacer()
                 
-                HStack(spacing: 4) {
-                    Image(systemName: "star.fill")
-                        .resizable()
-                        .frame(width: 12, height: 12)
-                        .foregroundColor(.orange)
-                    
-                    Text(String(format: "%.1f", movie.vote_average))
-                        .fontWeight(.medium)
-                }
+                RatingView(rating: movie.vote_average)
             }
+        }
+    }
+}
+
+struct RatingView: View {
+    var rating: Float
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "star.fill")
+                .resizable()
+                .frame(width: 12, height: 12)
+                .foregroundColor(.orange)
+            
+            Text(String(format: "%.1f", rating))
+                .fontWeight(.medium)
         }
     }
 }
@@ -71,11 +80,15 @@ struct MoviesListView: View {
     var body: some View {
         List {
             ForEach(movies) { movie in
-                MovieView(movie: movie)
-                    .padding(.vertical)
-                    .onAppear {
-                        viewModel.fetchDataIfNeeded(movie: movie)
-                    }
+                NavigationLink(
+                    destination: DetailsView(movie: movie, viewModel: viewModel),
+                    label: {
+                        MovieView(movie: movie)
+                            .padding(.vertical)
+                            .onAppear {
+                                viewModel.fetchDataIfNeeded(movie: movie)
+                            }
+                    })
             }
         }
         .listStyle(PlainListStyle())

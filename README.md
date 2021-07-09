@@ -3,12 +3,14 @@ Lista de filmes populares usando a API do The Movie Database com MVVM e SwiftUI.
 
 ## Screenshots
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/16376748/123775937-324c5980-d8a5-11eb-864a-c1dd7c1b58a0.png" width="400">    
+    <img src="https://user-images.githubusercontent.com/16376748/123775937-324c5980-d8a5-11eb-864a-c1dd7c1b58a0.png" width="400">
+    <img src="https://user-images.githubusercontent.com/16376748/125142135-64538c00-e0ed-11eb-887c-a42ddb50389a.png" width="400">
 </p>
 
 ## Vídeos
 - [Vídeo no Youtube](https://youtu.be/9STy4_0aD60)
 - [Vídeo no Youtube - Scroll Infinito](https://youtu.be/UevMxEK3-Gs)
+- [Vídeo no Youtube - DetailsView](https://youtu.be/M79FSYX3zCY)
 
 ## Requisitos
 - iOS 14

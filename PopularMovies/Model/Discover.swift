@@ -18,4 +18,10 @@ struct Movie: Identifiable, Decodable, Equatable {
     let overview: String?
     let poster_path: String
     let vote_average: Float
+    let genres: [Genre]?
+}
+
+struct Genre: Identifiable, Codable, Equatable {
+    let id: Int
+    let name: String
 }
