@@ -13,6 +13,7 @@ class MovieViewModel: ObservableObject {
     var totalPages: Int = 1
     var isFetchingData = false
     @Published var movie: Movie?
+    @Published var video: Video?
     
     func fetchDataIfNeeded(movie: Movie) {
         if movies.last == movie && page <= totalPages && !isFetchingData {
@@ -70,6 +71,39 @@ class MovieViewModel: ObservableObject {
                     let movie = try JSONDecoder().decode(Movie.self, from: data)
                     DispatchQueue.main.async {
                         self.movie = movie
+                    }
+                } catch (let error) {
+                    print(error)
+                    return
+                }
+            } else {
+                print("error")
+                return
+            }
+        }.resume()
+    }
+    
+    func fetchTrailer(movie: Movie) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movie.id)/videos?api_key=e6dc8c20ea0d4c49874b8fa5173a1309")
+        
+        isFetchingData = true
+        
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            self.isFetchingData = false
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(json)
+                    let videos = try JSONDecoder().decode(Videos.self, from: data)
+                    print(videos.results.count)
+                    DispatchQueue.main.async {
+                        self.video = videos.results.first
                     }
                 } catch (let error) {
                     print(error)
